@@ -99,5 +99,8 @@ export class AddPostComponent implements OnInit {
         console.log("Failure Response: " + error.message);
       }
     );
+    setTimeout(() => {
+      history.back();
+    }, 1000);
   }
 }

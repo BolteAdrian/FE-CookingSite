@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
+import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { AddPostService } from "../add-post.service";
 import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
@@ -14,14 +14,21 @@ export class EditPostComponent implements OnInit {
   postPayload: PostPayload;
   data: any;
   permaLink: Number;
+  pictureURL: string;
   editPostForm = this.fb.group({
     name: [""],
     title: [""],
     content: [""],
     shortDescription: [""],
-    ingredients: [""],
+    ingredients: this.fb.array([
+      this.fb.group({
+        name: [""],
+        quantity: [""],
+      }),
+    ]),
     methodOfPreparation: [""],
     category: [""],
+    picture: [""],
   });
 
   selectedFile: File = null;
@@ -36,13 +43,18 @@ export class EditPostComponent implements OnInit {
   ) {
     this.postPayload = {
       id: "",
+      title: "",
       content: "",
       shortDescription: "",
-      ingredients: "",
+      ingredients: [
+        {
+          name: "",
+          quantity: "",
+        },
+      ],
       methodOfPreparation: "",
       category: "",
       picture: "",
-      title: "",
       username: "",
     };
   }
@@ -51,19 +63,39 @@ export class EditPostComponent implements OnInit {
     this.http
       .get(`http://localhost:8080/api/posts/get/${id}`)
       .subscribe((data) => {
+        const ingredients = [];
+
+        data["ingredients"].split(",").forEach((substr) => {
+          const [name, quantity] = substr.split("-");
+          const ingredient = { name, quantity };
+          ingredients.push(ingredient);
+        });
+        this.pictureURL = data["picture"];
         this.data = {
           id: data["id"],
           title: data["title"],
           content: data["content"],
-          shortDescription: data["shortDescription"], //de reparat numele
-          category: data["category"],
-          picture: String(data["picture"]).match(/data:(.+?)\/png/)[1],
-          ingredients: data["ingredients"],
+          shortDescription: data["shortDescription"],
+          ingredients: ingredients,
           methodOfPreparation: data["shortDescription"],
+          category: data["category"],
+          picture: data["picture"],
           username: data["username"],
         };
 
         this.editPostForm.patchValue(this.data);
+
+        this.editPostForm.setControl(
+          "ingredients",
+          this.fb.array(
+            ingredients.map((ing) => {
+              return this.fb.group({
+                name: ing.name,
+                quantity: ing.quantity,
+              });
+            })
+          )
+        );
       });
   }
 
@@ -74,32 +106,55 @@ export class EditPostComponent implements OnInit {
     });
   }
 
-  onFileSelected(event: any) {
+  onFileSelected(event) {
     this.selectedFile = <File>event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.postPayload.picture = reader.result as string;
+    this.file_base64.readAsDataURL(this.selectedFile);
+    this.file_base64.onload = () => {
+      console.log(this.file_base64.result);
     };
-    reader.readAsDataURL(this.selectedFile);
+  }
+
+  get ingredientForms() {
+    return this.editPostForm.get("ingredients") as FormArray;
+  }
+
+  addIngredient() {
+    const ingredient = this.fb.group({
+      name: [""],
+      quantity: [""],
+    });
+    this.ingredientForms.push(ingredient);
+  }
+
+  deleteIngredient(i: number) {
+    this.ingredientForms.removeAt(i);
   }
 
   editPost() {
     this.postPayload.content = this.editPostForm.value["content"];
     this.postPayload.title = this.editPostForm.value["title"];
-    this.postPayload.category = this.editPostForm.value["category"];
-    //this.postPayload.ingredients = this.editPostForm.get("ingredients").value;
+    this.postPayload.ingredients = this.editPostForm
+      .get("ingredients")
+      .value.map((ingredient) => `${ingredient.name}-${ingredient.quantity}`)
+      .join(",");
     this.postPayload.methodOfPreparation = this.editPostForm.get(
       "methodOfPreparation"
     ).value;
-    this.postPayload.picture = String(this.file_base64.result);
+    this.postPayload.category = this.editPostForm.value["category"];
+    if (String(this.file_base64.result).length > 5) {
+      console.log(String(this.file_base64.result).length);
+      this.postPayload.picture = String(this.file_base64.result);
+    } else {
+      this.postPayload.picture = this.pictureURL;
+    }
     this.postPayload.shortDescription =
       this.editPostForm.value["shortDescription"];
     this.addpostService.editPost(this.permaLink, this.postPayload).subscribe(
       (data) => {
-        console.log("SUCCES");
+        console.log("SUCCES: " + data);
       },
       (error) => {
-        console.log("Failure Response");
+        console.log("Failure Response: " + error.message);
       }
     );
     setTimeout(() => {
