@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 })
 export class AddPostComponent implements OnInit {
   addPostForm: FormGroup;
-  postPayload: any;//PostPayload
+  postPayload: PostPayload;
   title = new FormControl("");
   body = new FormControl("");
   category = new FormControl("");

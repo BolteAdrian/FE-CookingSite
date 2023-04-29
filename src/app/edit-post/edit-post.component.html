@@ -29,15 +29,9 @@
 
       <div class="form-group">
         <label class="post-picture">Picture:</label>
-        <input
-          type="file"
-          formControlName="picture"
-          class="form-picture"
-          placeholder="picture"
-          (change)="onFileSelected($event)"
-        />
+        <input type="file" class="form-picture" (change)="onFileSelected($event)" />
       </div>
-
+      
       <div class="form-group">
         <label class="post-short-description">Short description:</label>
         <editor
@@ -49,43 +43,9 @@
         <label class="post-content">Description:</label>
         <editor formControlName="content" [init]="{ plugins: 'link' }"></editor>
       </div>
-      <div formArrayName="ingredients">
-        <div
-          *ngFor="let ingredient of ingredientForms.controls; let index = index"
-          [formGroupName]="index"
-        >
-          <div class="form-group">
-            <label for="name">Ingredient Name:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              formControlName="name"
-            />
-          </div>
-          <div class="form-group">
-            <label for="quantity">Quantity:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="quantity"
-              formControlName="quantity"
-            />
-          </div>
-          <button
-            type="button"
-            class="btn btn-danger"
-            (click)="deleteIngredient(index)"
-          >
-            Remove Ingredient
-          </button>
-        </div>
-      </div>
-      <button type="button" class="btn btn-success" (click)="addIngredient()">
-        Add Ingredient
-      </button>
+   
       <div class="form-group">
-        <label class="post-short-methodOfPreparation"
+        <label class="post-methodOfPreparation"
           >Method Of Preparation:</label
         >
         <editor

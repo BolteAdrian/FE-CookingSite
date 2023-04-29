@@ -5,7 +5,6 @@ import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { PostPayload } from "../utils/post-payload";
 
-
 @Component({
   selector: "app-edit-post",
   templateUrl: "./edit-post.component.html",
@@ -19,14 +18,15 @@ export class EditPostComponent implements OnInit {
     name: [""],
     title: [""],
     content: [""],
-    shortDescription:[""],
+    shortDescription: [""],
+    ingredients: [""],
+    methodOfPreparation: [""],
     category: [""],
-    picture: [""],
   });
 
-  selectedFile:File = null;
+  selectedFile: File = null;
 
-  file_base64:FileReader = new FileReader();
+  file_base64: FileReader = new FileReader();
 
   constructor(
     private fb: FormBuilder,
@@ -44,63 +44,66 @@ export class EditPostComponent implements OnInit {
       picture: "",
       title: "",
       username: "",
-    }
+    };
   }
 
   getData(id: string) {
-    this.http.get(`http://localhost:8080/api/posts/get/${id}`).subscribe((data) => {
-      
-    
-    this.data = {
-        id: data['id'],
-        title: data['title'],
-        content: data['content'],
-        shortDescription: data['short_description'], //de reparat numele
-        category: data['category'],
-        picture: data['picture'],
-        ingredients: data['ingredients'],
-        methodOfPreparation: data['methodOfPreparation'],
-        username: data['username'],
-      };
+    this.http
+      .get(`http://localhost:8080/api/posts/get/${id}`)
+      .subscribe((data) => {
+        this.data = {
+          id: data["id"],
+          title: data["title"],
+          content: data["content"],
+          shortDescription: data["shortDescription"], //de reparat numele
+          category: data["category"],
+          picture: String(data["picture"]).match(/data:(.+?)\/png/)[1],
+          ingredients: data["ingredients"],
+          methodOfPreparation: data["shortDescription"],
+          username: data["username"],
+        };
 
-      this.editPostForm.patchValue(this.data);
-    });
+        this.editPostForm.patchValue(this.data);
+      });
   }
 
   ngOnInit() {
     this.router.params.subscribe((params) => {
       this.getData(params["id"]);
-      this.permaLink = params['id'];
+      this.permaLink = params["id"];
     });
   }
 
-  onFileSelected(event:any) {
+  onFileSelected(event: any) {
     this.selectedFile = <File>event.target.files[0];
-    console.log(this.selectedFile)
-    this.file_base64.readAsDataURL(this.selectedFile);
-    this.file_base64.onload = () => {
-        console.log(this.file_base64.result);
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.postPayload.picture = reader.result as string;
     };
+    reader.readAsDataURL(this.selectedFile);
   }
 
-
   editPost() {
-
-    this.postPayload.content = this.editPostForm.value['content'];
-    this.postPayload.title = this.editPostForm.value['title'];
-    this.postPayload.category = this.editPostForm.value['category'];
-    this.postPayload.ingredients = this.editPostForm.get("ingredients").value;
-    this.postPayload.methodOfPreparation = this.editPostForm.get("methodOfPreparation").value;
+    this.postPayload.content = this.editPostForm.value["content"];
+    this.postPayload.title = this.editPostForm.value["title"];
+    this.postPayload.category = this.editPostForm.value["category"];
+    //this.postPayload.ingredients = this.editPostForm.get("ingredients").value;
+    this.postPayload.methodOfPreparation = this.editPostForm.get(
+      "methodOfPreparation"
+    ).value;
     this.postPayload.picture = String(this.file_base64.result);
-    this.postPayload.shortDescription = this.editPostForm.value['shortDescription'];
-    this.addpostService.editPost(this.permaLink,this.postPayload).subscribe(data => {
-      console.log('SUCCES');
-    }, error => {
-      console.log('Failure Response');
-    })
-     setTimeout(()=> {
+    this.postPayload.shortDescription =
+      this.editPostForm.value["shortDescription"];
+    this.addpostService.editPost(this.permaLink, this.postPayload).subscribe(
+      (data) => {
+        console.log("SUCCES");
+      },
+      (error) => {
+        console.log("Failure Response");
+      }
+    );
+    setTimeout(() => {
       history.back();
-   }
-   ,1000);
+    }, 1000);
   }
 }

@@ -3,7 +3,7 @@ export class PostPayload {
   content: String;
   shortDescription: String;
   category: String;
-  ingredients: String;
+  ingredients: String | object[];
   methodOfPreparation: String;
   picture: String;
   title: String;
