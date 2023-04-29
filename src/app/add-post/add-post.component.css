@@ -1,0 +1,25 @@
+.add-post-content {
+  padding: 20px;
+}
+
+.new-post-title {
+  color: royalblue;
+}
+
+.post-content,
+.post-title,
+.post-category,
+.post-short-description {
+  color: royalblue;
+}
+
+.container {
+  background: aliceblue;
+  padding: 10px;
+}
+
+@media screen and (max-width: 480px) {
+  .back_button {
+    margin-bottom: 10px;
+  }
+}

@@ -1,0 +1,38 @@
+<div class="content">
+  <div class="container">
+    <button class="btn btn-dark back_button" [routerLink]="['/']">Go Back</button>
+    <div class="row post">
+      <div class="post_container">
+        <div class="img_container">
+        <img src={{post.picture}} />
+      </div>
+        <h1 class="blog-title">{{ post.title }}</h1>
+        <span>
+          <p>{{ post.category }}</p>
+        </span>
+        <hr />
+        <p [innerHTML]="post.content"></p>
+        <hr />
+        <span>
+          <p>by {{ post.username }}</p>
+        </span>
+      </div>
+    </div>
+    <div class="action-post">
+      <button
+        (click)="deletePost()"
+        class="btn btn-danger"
+        *ngIf="authService.isAuthenticated()"
+      >
+        Delete Post
+      </button>
+      <button
+        (click)="editPost()"
+        class="btn btn-info"
+        *ngIf="authService.isAuthenticated()"
+      >
+        Edit Post
+      </button>
+    </div>
+  </div>
+</div>

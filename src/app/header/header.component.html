@@ -1,0 +1,17 @@
+<div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h1><a href="" class="title">News Blog</a></h1>
+      </div> <!-- Title -->
+      <div  class="col-md-3  login" *ngIf="authService.isAuthenticated()">
+          <button class="logout btn btn-default" (click)="logout()">Logout</button>
+      </div>
+      <div class="col-md-3 login" *ngIf="!authService.isAuthenticated()">
+        <a href="/login" class="login btn btn-default">Login</a>
+        <a href="/register" class="register btn btn-default">Register</a>
+      </div> <!-- Login and Register -->
+    </div>
+  </div>
+</div>
+
