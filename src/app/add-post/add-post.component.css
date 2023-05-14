@@ -15,7 +15,25 @@
 
 .container {
   background: aliceblue;
-  padding: 10px;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+form {
+  display: flex;
+  gap: 30px;
+}
+
+.right-container {
+  width: 50%;
+}
+
+.left-container {
+  width: 50%;
+}
+
+button {
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 480px) {

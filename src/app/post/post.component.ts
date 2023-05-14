@@ -4,6 +4,7 @@ import { AddPostService } from "../add-post.service";
 import { PostPayload } from "../utils/post-payload";
 import { AuthService } from "../auth/auth.service";
 import { Router } from "@angular/router";
+import { Location } from "@angular/common";
 
 // @ts-ignore
 @Component({
@@ -19,7 +20,8 @@ export class PostComponent implements OnInit {
     private router: ActivatedRoute,
     private postService: AddPostService,
     private authService: AuthService,
-    private router2: Router
+    private router2: Router,
+    private location: Location
   ) {}
 
   logout() {
@@ -33,23 +35,33 @@ export class PostComponent implements OnInit {
 
     this.postService.getPost(this.permaLink).subscribe(
       (data: PostPayload) => {
+        const ingredients = [];
+        String(data["ingredients"])
+          .split(",")
+          .forEach((substr) => {
+            const [name, quantity] = substr.split("-");
+            const ingredient = { name, quantity };
+            ingredients.push(ingredient);
+          });
+
         this.post = data;
+        this.post.ingredients = ingredients;
       },
-      (err: any) => {
-        console.log("Failure Response");
+      (error: any) => {
+        console.log("Failure Response:" + error.message);
       }
     );
   }
 
   deletePost() {
-    if (confirm("Are you sure you want to delete this data?")) {
+    if (confirm("Are you sure you want to delete this recipe?")) {
       this.postService.deletePost(this.permaLink).subscribe(
         (data: PostPayload) => {
           this.post = data;
           this.router2.navigateByUrl("/");
         },
-        (err: any) => {
-          console.log("Failure Response");
+        (error: any) => {
+          console.log("Failure Response:" + error.message);
         }
       );
       setTimeout(() => {
@@ -60,5 +72,9 @@ export class PostComponent implements OnInit {
 
   editPost() {
     this.router2.navigate([`/edit-post/${this.permaLink}`]);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

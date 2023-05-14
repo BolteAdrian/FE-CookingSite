@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup, FormArray } from "@angular/forms";
+import { FormControl, FormGroup, FormArray, Validators } from "@angular/forms";
 import { PostPayload } from "../utils/post-payload";
 import { AddPostService } from "../add-post.service";
 import { Router } from "@angular/router";
@@ -12,12 +12,12 @@ import { Router } from "@angular/router";
 export class AddPostComponent implements OnInit {
   addPostForm: FormGroup;
   postPayload: PostPayload;
-  title = new FormControl("");
-  body = new FormControl("");
-  category = new FormControl("");
+  title = new FormControl("", Validators.required);
+  body = new FormControl("", Validators.required);
+  category = new FormControl("", Validators.required);
   picture = new FormControl("");
-  shortDescription = new FormControl("");
-  methodOfPreparation = new FormControl("");
+  shortDescription = new FormControl("", Validators.required);
+  methodOfPreparation = new FormControl("", Validators.required);
   selectedFile: File = null;
   file_base64: string = null;
 
@@ -92,8 +92,8 @@ export class AddPostComponent implements OnInit {
       this.addPostForm.get("shortDescription").value;
 
     this.addpostService.addPost(this.postPayload).subscribe(
-      () => {
-        this.router.navigateByUrl("/");
+      (data) => {
+        console.log("SUCCES: " + data);
       },
       (error) => {
         console.log("Failure Response: " + error.message);

@@ -1,23 +1,43 @@
-.add-post-content{
-    padding: 20px;
-  }
-  
-  .new-post-title{
-    color: royalblue;
-  }
-  
-  .post-content, .post-title,.post-category,.post-short-description{
-    color: royalblue;
-  }
-  
-  .container{
-    background: aliceblue;
-    padding: 10px;
-  }
+.add-post-content {
+  padding: 20px;
+}
 
-  @media screen and (max-width: 480px) {
-    .back_button {
-      margin-bottom: 10px;
-    }
+.new-post-title {
+  color: royalblue;
+}
+
+.post-content,
+.post-title,
+.post-category,
+.post-short-description {
+  color: royalblue;
+}
+
+.container {
+  background: aliceblue;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+form {
+  display: flex;
+  gap: 30px;
+}
+
+.right_container {
+  width: 50%;
+}
+
+.left_container {
+  width: 50%;
+}
+
+button{
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 480px) {
+  .back_button {
+    margin-bottom: 10px;
   }
-  
+}

@@ -4,98 +4,111 @@
   </button>
   <div class="container">
     <div>
-      <h3 class="new-post-title">Create New Post</h3>
+      <h3 class="new-post-title">Create New Recipe</h3>
     </div>
     <hr />
     <form [formGroup]="addPostForm" (ngSubmit)="addPost()">
-      <div class="form-group">
-        <label for="title">Title:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="title"
-          formControlName="title"
-        />
-      </div>
-      <div class="form-group">
-        <label for="body">Body:</label>
-        <textarea
-          class="form-control"
-          id="body"
-          formControlName="body"
-        ></textarea>
-      </div>
-      <div class="form-group">
-        <label for="shortDescription">Short Description:</label>
-        <textarea
-          class="form-control"
-          id="shortDescription"
-          formControlName="shortDescription"
-        ></textarea>
-      </div>
-      <div formArrayName="ingredients">
-        <div
-          *ngFor="let ingredient of ingredientForms.controls; let index = index"
-          [formGroupName]="index"
-        >
-          <div class="form-group">
-            <label for="name">Ingredient Name:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              formControlName="name"
-            />
-          </div>
-          <div class="form-group">
-            <label for="quantity">Quantity:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="quantity"
-              formControlName="quantity"
-            />
-          </div>
-          <button
-            type="button"
-            class="btn btn-danger"
-            (click)="deleteIngredient(index)"
-          >
-            Remove Ingredient
-          </button>
+      <div class="right-container">
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            formControlName="title"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="category">Category:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="category"
+            formControlName="category"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="shortDescription">Short Description:</label>
+          <textarea
+            class="form-control"
+            id="shortDescription"
+            formControlName="shortDescription"
+            required
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="body">Description:</label>
+          <editor
+            id="body"
+            formControlName="body"
+            required
+          ></editor>
+        </div>
+        <div class="form-group">
+          <label for="picture">Picture:</label>
+          <input
+            type="file"
+            class="form-control"
+            id="picture"
+            (change)="onFileSelected($event)"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="methodOfPreparation">Method of Preparation:</label>
+          <editor
+            id="methodOfPreparation"
+            formControlName="methodOfPreparation"
+            required
+          ></editor>
         </div>
       </div>
-      <button type="button" class="btn btn-success" (click)="addIngredient()">
-        Add Ingredient
-      </button>
-      <div class="form-group">
-        <label for="methodOfPreparation">Method of Preparation:</label>
-        <textarea
-          class="form-control"
-          id="methodOfPreparation"
-          formControlName="methodOfPreparation"
-        ></textarea>
-      </div>
-      <div class="form-group">
-        <label for="category">Category:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="category"
-          formControlName="category"
-        />
-      </div>
-      <div class="form-group">
-        <label for="picture">Picture:</label>
-        <input
-          type="file"
-          class="form-control"
-          id="picture"
-          (change)="onFileSelected($event)"
-        />
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Add</button>
+      <div class="left-container">
+        <div formArrayName="ingredients">
+          <div
+            *ngFor="
+              let ingredient of ingredientForms.controls;
+              let index = index
+            "
+            [formGroupName]="index"
+          >
+            <div class="form-group">
+              <label for="name">Ingredient Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                formControlName="name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="quantity">Quantity:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="quantity"
+                formControlName="quantity"
+                required
+              />
+            </div>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deleteIngredient(index)"
+            >
+              Remove Ingredient
+            </button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-success" (click)="addIngredient()">
+          Add Ingredient
+        </button>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
       </div>
     </form>
   </div>

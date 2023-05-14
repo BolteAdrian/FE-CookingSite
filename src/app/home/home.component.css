@@ -3,6 +3,27 @@
   padding-top: 10px;
 }
 
+.title {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  top: 25px;
+}
+
+.title img {
+  width: 800px;
+  height: 800px;
+}
+
+.text-overlay {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #8a2be2;
+  font-size: 24px;
+}
+
 .container {
   background: aliceblue;
   margin-bottom: 15px;
@@ -13,7 +34,7 @@
 }
 
 .container_posts {
-  padding: 100px 0 10px 0;
+  padding: 10px 0 10px 0;
 }
 .read-more {
   border: 2px solid black;

@@ -1,5 +1,6 @@
 .container{
     background: aliceblue;
-    padding: 10px;
+    padding: 30px;
     margin-top: 1rem;
+    border-radius: 10px;
   }
