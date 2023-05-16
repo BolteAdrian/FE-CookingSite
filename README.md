@@ -11,7 +11,8 @@ Home page:
 ![Screenshot 2023-05-16 234532](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/49a46eb6-e468-43a8-8309-4a39556846b0)
 
 Register page:
-![Screenshot 2023-05-16 235358](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/0c125a4d-0c39-45a9-b356-80826694d26b)
+![Screenshot 2023-05-16 235358](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/00198e45-aa7c-4fb6-a770-8771f3b5bd9b)
+
 
 Login page:
 ![Screenshot 2023-05-16 235339](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/8b71fd1c-a735-426f-9a1b-ae39ac167177)
