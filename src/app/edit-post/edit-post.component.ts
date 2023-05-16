@@ -3,7 +3,7 @@ import { FormArray, FormBuilder } from "@angular/forms";
 import { AddPostService } from "../add-post.service";
 import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
-import { PostPayload } from "../utils/post-payload";
+import { PostPayload } from "../utils/interfaces/post-payload";
 
 @Component({
   selector: "app-edit-post",

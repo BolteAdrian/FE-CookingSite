@@ -13,6 +13,7 @@
         <hr />
         <p [innerHTML]="post.content"></p>
         <hr />
+        <h3>Ingredients:</h3>
         <p>
           <span *ngFor="let ingredient of post.ingredients">
             {{ ingredient.name }}: {{ ingredient.quantity }}
@@ -20,6 +21,7 @@
           </span>
         </p>
         <hr />
+        <h3>Method Of preparation:</h3>
         <p [innerHTML]="post.methodOfPreparation"></p>
         <hr />
         <span>

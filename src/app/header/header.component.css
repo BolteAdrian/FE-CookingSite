@@ -16,6 +16,7 @@
 .icon {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
 .icon img {
@@ -29,10 +30,15 @@
 }
 
 .login,
-.register {
+.register-login-btn {
   text-decoration: none;
   color: aliceblue;
-  padding-top: 10px;
+}
+
+.login,
+.register-login-btn:hover {
+  text-decoration: none;
+  border-color: aliceblue;
 }
 
 .logout {
@@ -41,7 +47,7 @@
 
 .logout:hover,
 .new-post:hover {
-  color: aliceblue;
+  border-color: aliceblue;
   text-decoration: none;
   text-align: right;
 }
@@ -49,4 +55,8 @@
 .login {
   margin-left: auto;
   text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
 }

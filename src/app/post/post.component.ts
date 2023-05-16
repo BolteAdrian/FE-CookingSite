@@ -1,10 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { AddPostService } from "../add-post.service";
-import { PostPayload } from "../utils/post-payload";
 import { AuthService } from "../auth/auth.service";
 import { Router } from "@angular/router";
 import { Location } from "@angular/common";
+import { PostPayload } from "../utils/interfaces/post-payload";
+import { DeleteModalComponent } from "../utils/modals/delete-modal/delete-modal.component";
+import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 
 // @ts-ignore
 @Component({
@@ -21,9 +23,10 @@ export class PostComponent implements OnInit {
     private postService: AddPostService,
     private authService: AuthService,
     private router2: Router,
-    private location: Location
+    private location: Location,
+    private modalService: BsModalService
   ) {}
-
+  private modalRef: BsModalRef;
   logout() {
     this.authService.logout();
   }
@@ -54,7 +57,10 @@ export class PostComponent implements OnInit {
   }
 
   deletePost() {
-    if (confirm("Are you sure you want to delete this recipe?")) {
+    this.modalRef = this.modalService.show(DeleteModalComponent);
+
+    this.modalRef.content.confirmDelete.subscribe(() => {
+      // User clicked the confirm button
       this.postService.deletePost(this.permaLink).subscribe(
         (data: PostPayload) => {
           this.post = data;
@@ -67,7 +73,12 @@ export class PostComponent implements OnInit {
       setTimeout(() => {
         history.back();
       }, 1000);
-    }
+    });
+
+    this.modalRef.content.cancelDelete.subscribe(() => {
+      // User clicked the cancel button or closed the modal
+      console.log("Delete canceled");
+    });
   }
 
   editPost() {

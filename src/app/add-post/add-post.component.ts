@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, FormArray, Validators } from "@angular/forms";
-import { PostPayload } from "../utils/post-payload";
 import { AddPostService } from "../add-post.service";
 import { Router } from "@angular/router";
+import { PostPayload } from "../utils/interfaces/post-payload";
 
 @Component({
   selector: "app-add-post",

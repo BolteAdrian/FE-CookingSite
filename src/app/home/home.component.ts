@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AddPostService} from '../add-post.service';
 import {Observable} from 'rxjs';
-import {PostPayload} from '../utils/post-payload';
 import {AuthService} from '../auth/auth.service';
+import { PostPayload } from '../utils/interfaces/post-payload';
 
 @Component({
   selector: 'app-home',
