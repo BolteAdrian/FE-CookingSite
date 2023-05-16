@@ -21,11 +21,12 @@ Post page
 
 If the user is logged in, then an add post button will appear on the home page at the top right, and the edit and delete options will appear on the pages of a post:
 
-Create new post
+Create new recipe:
 ![Screenshot 2023-05-16 235034](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/9e238ad0-2769-48a1-bfd1-118162db0a5a)
 
-Edit post
+Edit recipe:
 ![Screenshot 2023-05-16 234855](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/fc42f2ba-ebf5-497d-ae99-39a106c85d90)
 
-Delete post
+Delete recipe:
+
 ![Screenshot 2023-05-16 234953](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/8d6173b2-545a-4e90-9ef9-8d66c69d0ceb)
