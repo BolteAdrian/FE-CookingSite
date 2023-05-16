@@ -27,6 +27,7 @@
 .container {
   background: aliceblue;
   margin-bottom: 15px;
+  max-width: 1500px;
 }
 
 .row {
@@ -47,7 +48,10 @@
 .img_container {
   width: 20%;
 }
-
+.img_container img {
+  width: 212px;
+  height: 159px;
+}
 .blogpost {
   width: 80%;
   margin: 0 25px;
@@ -57,6 +61,18 @@
   max-width: 100%;
   object-fit: fill;
   margin-top: 40px;
+}
+
+.container_categories {
+  display: flex;
+  gap: 50px;
+  justify-content: space-around;
+  padding: 40px 0;
+}
+
+.bar {
+  display: flex;
+  gap: 10px;
 }
 
 @media screen and (max-width: 480px) {

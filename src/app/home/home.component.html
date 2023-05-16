@@ -7,6 +7,23 @@
     <img src="./../../assets/pictures/chef-icon.png" alt="home_img" />
   </div>
   <div class="container">
+    <div class="container_categories">
+      <div class="bar">
+        <button class="btn btn-secondary">Fish</button>
+        <button class="btn btn-secondary">Pork</button>
+        <button class="btn btn-secondary">Soup</button>
+        <button class="btn btn-secondary">Salad</button>
+        <button class="btn btn-secondary">Vegetable dishes</button>
+        <button class="btn btn-secondary">Sauces and Salsa</button>
+        <button class="btn btn-secondary">LAMB</button>
+        <button class="btn btn-secondary">BIRD MEAT</button>
+        <button class="btn btn-secondary">GROUND BEEF</button>
+      </div>
+      <div class="bar">
+        <input type="text" class="search-input" placeholder="Search..." />
+        <button class="search-button btn btn-secondary">Search</button>
+      </div>
+    </div>
     <div class="container_posts">
       <div class="container_post" *ngFor="let post of posts | async">
         <div class="img_container">
