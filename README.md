@@ -8,7 +8,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 Backend link : https://github.com/BolteAdrian/BE-CookingSite
 
 Home page:
-![Screenshot 2023-05-16 234532](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/503b32b9-2984-4c8c-8c68-170039f92d6e)
+![Screenshot 2023-05-22 010931](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/4e8c66d8-c780-4522-981e-93d50d04f58a)
 
 
 Register page:
