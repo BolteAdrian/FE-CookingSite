@@ -1,25 +1,71 @@
-import { Component, OnInit } from '@angular/core';
-import {AddPostService} from '../add-post.service';
-import {Observable} from 'rxjs';
-import {AuthService} from '../auth/auth.service';
-import { PostPayload } from '../utils/interfaces/post-payload';
+import { Component, OnInit } from "@angular/core";
+import { AddPostService } from "../add-post.service";
+import { AuthService } from "../auth/auth.service";
+import { PostPayload } from "../utils/interfaces/post-payload";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: "app-home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
+  posts: PostPayload[];
+  searchTerm: string;
+  currentPage: number = 1;
+  totalPages: number = 0;
 
-  posts: Observable<Array<PostPayload>>;
-  constructor(private postService: AddPostService ,private authService: AuthService) { }
+  constructor(
+    private postService: AddPostService,
+    private authService: AuthService
+  ) {}
 
   logout() {
     this.authService.logout();
   }
 
   ngOnInit() {
-    this.posts = this.postService.getAllPosts();
+    this.loadAllPosts();
   }
 
+  loadAllPosts(
+    searchTerm: string = "",
+    pageNo: number = 0,
+    pageSize: number = 5
+  ): void {
+    this.postService
+      .showAllPostsPaginated(searchTerm, pageNo, pageSize)
+      .subscribe((posts) => {
+        this.posts = posts;
+      });
+  }
+
+  loadAllPostsCategory(
+    searchTerm: string = "",
+    pageNo: number = 0,
+    pageSize: number = 5
+  ): void {
+    this.postService
+      .showAllPostsByCategory(searchTerm, pageNo, pageSize)
+      .subscribe((posts) => {
+        this.posts = posts;
+      });
+  }
+
+  search(): void {
+    this.loadAllPosts(this.searchTerm);
+  }
+
+  searchCategory(categoryName: string): void {
+    this.loadAllPostsCategory(categoryName);
+  }
+
+  onPageChange(pageNumber: number): void {
+    const searchTerm = ""; // Termenul de căutare (opțional)
+    const pageSize = 5; // Dimensiunea paginii
+
+    // Calculează numărul paginii bazat pe index 0
+    const pageNo = pageNumber - 1;
+
+    this.loadAllPosts(searchTerm, pageNo, pageSize);
+  }
 }

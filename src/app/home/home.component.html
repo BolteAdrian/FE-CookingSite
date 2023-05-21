@@ -9,23 +9,43 @@
   <div class="container">
     <div class="container_categories">
       <div class="bar">
-        <button class="btn btn-secondary">Fish</button>
-        <button class="btn btn-secondary">Pork</button>
-        <button class="btn btn-secondary">Soup</button>
-        <button class="btn btn-secondary">Salad</button>
-        <button class="btn btn-secondary">Vegetable dishes</button>
-        <button class="btn btn-secondary">Sauces and Salsa</button>
-        <button class="btn btn-secondary">LAMB</button>
-        <button class="btn btn-secondary">BIRD MEAT</button>
-        <button class="btn btn-secondary">GROUND BEEF</button>
+        <button class="btn btn-secondary" (click)="searchCategory('Fish')">
+          Fish
+        </button>
+        <button class="btn btn-secondary" (click)="searchCategory('Pork')">
+          Pork
+        </button>
+        <button class="btn btn-secondary" (click)="searchCategory('Soup')">
+          Soup
+        </button>
+        <button class="btn btn-secondary" (click)="searchCategory('Salad')">
+          Salad
+        </button>
+        <button class="btn btn-secondary" (click)="searchCategory('Vegetable')">
+          Vegetable
+        </button>
+        <button class="btn btn-secondary" (click)="searchCategory('Sauces')">
+          Sauces
+        </button>
+        <button class="btn btn-secondary" (click)="searchCategory('LAMB')">
+          LAMB
+        </button>
+        <button class="btn btn-secondary" (click)="searchCategory('BIRD')">
+          BIRD MEAT
+        </button>
+        <button class="btn btn-secondary" (click)="searchCategory('BEEF')">
+          GROUND BEEF
+        </button>
       </div>
       <div class="bar">
         <input type="text" class="search-input" placeholder="Search..." />
-        <button class="search-button btn btn-secondary">Search</button>
+        <button class="search-button btn btn-secondary" (click)="search()">
+          Search
+        </button>
       </div>
     </div>
     <div class="container_posts">
-      <div class="container_post" *ngFor="let post of posts | async">
+      <div class="container_post" *ngFor="let post of posts">
         <div class="img_container">
           <img src="{{ post.picture }}" alt="recipe_img" />
         </div>
@@ -42,12 +62,29 @@
               type="button"
               href="/post/{{ post.id }}"
               class="read-more btn btn-default"
-              >Read More</a
             >
+              Read More
+            </a>
           </div>
           <hr />
         </div>
         <hr />
+      </div>
+      <div class="container_pagination">
+        <button
+          class="btn btn-primary"
+          [disabled]="currentPage === 1"
+          (click)="onPageChange(currentPage - 1)"
+        >
+          Previous
+        </button>
+        <button
+          class="btn btn-primary"
+          [disabled]="currentPage === totalPages"
+          (click)="onPageChange(currentPage + 1)"
+        >
+          Next
+        </button>
       </div>
     </div>
   </div>
