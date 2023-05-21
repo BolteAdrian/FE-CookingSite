@@ -7,35 +7,34 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Backend link : https://github.com/BolteAdrian/BE-CookingSite
 
+Home page:
+![Screenshot 2023-05-16 234532](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/503b32b9-2984-4c8c-8c68-170039f92d6e)
+
+
 Register page:
-![image](https://user-images.githubusercontent.com/87446991/214426942-f4623799-ce31-431a-ad2f-cd71de553977.png)
+![Screenshot 2023-05-16 235358](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/82edc48e-4359-4906-958f-f61a87efe206)
+
 
 Login page:
-![image](https://user-images.githubusercontent.com/87446991/214426983-b560e9b4-ad3a-4ac3-9b1c-04d7656b8bd6.png)
+![Screenshot 2023-05-16 235339](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/f89a1138-687c-40d8-af20-9b41ff0b087e)
 
-Home page
-![Screenshot 2023-01-27 235700](https://user-images.githubusercontent.com/87446991/215212292-35a9c9fb-1ce5-462d-a355-2d917f4f3b6d.png)
-
-Home mobile version:
-
-![Screenshot 2023-01-27 235121](https://user-images.githubusercontent.com/87446991/215212497-e023caeb-8a9c-4455-a890-e450a6400cbc.png)
 
 Post page
-![Screenshot 2023-01-27 235540](https://user-images.githubusercontent.com/87446991/215212379-0d597021-a6d3-48da-a7be-a710bfc7b65f.png)
 
-Post mobile version:
-
-![Screenshot 2023-01-27 235057](https://user-images.githubusercontent.com/87446991/215212579-14c7ea0a-3ee6-4631-8bc7-c2ba6e13f0b6.png)
+![Screenshot 2023-05-16 234715](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/4273c94c-014d-42eb-831d-e15e0362dc60)
 
 If the user is logged in, then an add post button will appear on the home page at the top right, and the edit and delete options will appear on the pages of a post:
 
-Create new post
-![Screenshot 2023-01-27 235800](https://user-images.githubusercontent.com/87446991/215212663-1e649dea-df19-4816-8c87-43b2b124c580.png)
+Create new recipe:
+![Screenshot 2023-05-16 234830](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/00395460-4980-46ad-8a2e-6b497f1f2712)
 
-Edit post
-![Screenshot 2023-01-27 235835](https://user-images.githubusercontent.com/87446991/215212705-43784305-9041-4c74-bf26-82359ae8e581.png)
 
-Delete post
+Edit recipe:
+![Screenshot 2023-05-16 234855](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/e5ea0173-bf9d-42d3-8c59-52d4e253f87d)
 
-![Screenshot 2023-01-27 235428](https://user-images.githubusercontent.com/87446991/215212785-b3870bbc-9fe7-4b37-b55e-2a066152c1e3.png)
+
+Delete recipe:
+
+![Screenshot 2023-05-16 234953](https://github.com/BolteAdrian/FE-CookingSite/assets/87446991/800df563-81a3-4048-b560-f8a87a746098)
+
 
