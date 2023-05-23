@@ -62,11 +62,10 @@ export class HomeComponent implements OnInit {
   onPageChange(pageNumber: number): void {
     const searchTerm = ""; // Termenul de căutare (opțional)
     const pageSize = 5; // Dimensiunea paginii
-  
+
     const pageNo = pageNumber - 1; // Atribuiți direct `pageNumber - 1` la `pageNo`
-  
+
     this.loadAllPosts(searchTerm, pageNo, pageSize);
     this.currentPage = pageNumber; // Actualizați valoarea paginii curente
   }
-  
 }

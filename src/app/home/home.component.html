@@ -38,7 +38,7 @@
         </button>
       </div>
       <div class="bar">
-        <input type="text" class="search-input" placeholder="Search..." />
+        <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchTerm" />
         <button class="search-button btn btn-secondary" (click)="search()">
           Search
         </button>
